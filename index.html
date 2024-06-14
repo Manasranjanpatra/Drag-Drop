@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        width: 100%;
+        height: 100vh;
+        background-color: rgb(26, 85, 214);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+      }
+      .left {
+        width: 30%;
+          height: 39vh;
+        border: 2px dashed black;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        padding: 10px;
+      }
+      .right {
+        width: 30%;
+          height: 39vh;
+        border: 2px dashed rgb(164, 207, 45);
+        display: flex;
+        padding: 10px;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+      }
+      .mi {
+        border: 2px solid rgb(164, 207, 45);
+        cursor: pointer;
+        font-size: 1.6rem;
+        padding:0.3rem 0.9rem;
+       
+        background: rgb(85, 0, 255);
+        font-weight: 500;
+        color: white;
+        transition: all 0.3s;
+        border-radius: 6px;
+        text-transform: capitalize;
+      }
+      .mi:hover {
+        box-shadow: 0 0 5px rgb(85, 0, 255), 0 0 20px rgb(85, 0, 255);
+      }
+      @media (max-width: 900px) {
+        .left {
+          width: 36%;
+          height: 33vh;
+          border: 2px dashed rgb(164, 207, 45);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-direction: column;
+        }
+        .right {
+          width: 36%;
+          height: 33vh;
+          border: 2px dashed rgb(164, 207, 45);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-direction: column;
+        }
+        .mi {
+        border: 2px solid black;
+        cursor: pointer;
+        font-size: 1.5rem;
+        padding:6px 9px;
+       
+        background: rgb(85, 0, 255);
+        font-weight: 500;
+        color: white;
+        transition: all 0.3s;
+        border-radius: 6px;
+        letter-spacing: 1px;
+        text-transform: capitalize;
+      }
+      }
+    </style>
+  </head>
+  <body>
+   
+    <div class="container">
+      <div class="left">
+        <div class="mi" draggable="true">task-1</div>
+        <div class="mi" draggable="true">task-2</div>
+        <div class="mi" draggable="true">task-3</div>
+        <div class="mi" draggable="true">task-4</div>
+      </div>
+      <div class="right"></div>
+    </div>
+    <script>
+      let divl = document.querySelector(".left");
+      let divr = document.querySelector(".right");
+      let mainds = document.getElementsByClassName("mi");
+      for (list of mainds) {
+        list.addEventListener("dragstart", function (e) {
+          // pickup
+          let selected = e.target;
+          console.log(selected);
+
+          divr.addEventListener("dragover", function (e) {
+            // not here and there
+            e.preventDefault();
+          });
+          divr.addEventListener("drop", (e) => {
+            // in perticular place
+            divr.appendChild(selected);
+            selected = null;
+          });
+
+          divl.addEventListener("dragover", function (e) {
+            e.preventDefault();
+          });
+          divl.addEventListener("drop", (e) => {
+            divl.appendChild(selected);
+            selected = null;
+          });
+        });
+      }
+    </script>
+  </body>
+</html>
